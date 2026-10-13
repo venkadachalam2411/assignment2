@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Venkadachalam - Resume</title>
+    <link rel="icon" type="image/jpeg" href="photo.jpg" />
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --page-bg: #eef2f6;
+        --resume-bg: #ffffff;
+        --text: #202938;
+        --heading: #174a78;
+        --border: #d7e0e9;
+        --muted: #536174;
+        --table-stripe: #f3f6f9;
+        --button: #174a78;
+        --button-hover: #103654;
+      }
+
+      body.dark-mode {
+        --page-bg: #0f172a;
+        --resume-bg: #1e293b;
+        --text: #e2e8f0;
+        --heading: #60a5fa;
+        --border: #334155;
+        --muted: #cbd5e1;
+        --table-stripe: #263449;
+        --button: #2563eb;
+        --button-hover: #1d4ed8;
+      }
+
+      body {
+        font-family: "Times New Roman", Times, serif;
+        background: var(--page-bg);
+        color: var(--text);
+        line-height: 1.5;
+        padding: 25px 15px;
+        transition:
+          background-color 0.25s,
+          color 0.25s;
+      }
+
+      .toolbar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+        margin: 0 auto 15px;
+      }
+
+      .print-btn,
+      .control-btn {
+        background: var(--button);
+        color: #ffffff;
+        border: none;
+        border-radius: 6px;
+        padding: 11px 18px;
+        font-family: Arial, sans-serif;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .print-btn:hover,
+      .control-btn:hover {
+        background: var(--button-hover);
+      }
+
+      .profile-image {
+        display: block;
+        width: 130px;
+        height: 130px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 50%;
+        margin: 10px auto 0;
+      }
+
+      .button-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+      }
+      .resume {
+        width: 100%;
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 40px 45px;
+        background: var(--resume-bg);
+        color: var(--text);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition:
+          background-color 0.25s,
+          color 0.25s;
+      }
+
+      header {
+        text-align: center;
+        border-bottom: 2px solid var(--heading);
+        padding-bottom: 15px;
+      }
+
+      header h1 {
+        color: var(--heading);
+        font-size: 28px;
+        margin-bottom: 10px;
+        overflow-wrap: anywhere;
+      }
+
+      .contact {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 5px 12px;
+        font-size: 13px;
+      }
+
+      a {
+        color: var(--heading);
+        text-decoration: none;
+        overflow-wrap: anywhere;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      section {
+        margin-top: 20px;
+      }
+
+      h2 {
+        color: var(--heading);
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+
+      .skill {
+        margin-bottom: 5px;
+        font-size: 14px;
+      }
+
+      .entry {
+        margin-bottom: 13px;
+      }
+
+      .entry-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 5px 12px;
+        font-size: 14px;
+      }
+
+      .entry-title {
+        font-weight: bold;
+      }
+
+      .date,
+      .tech {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .tech {
+        font-style: italic;
+        margin-top: 2px;
+      }
+
+      ul {
+        padding-left: 20px;
+        margin-top: 5px;
+        font-size: 14px;
+      }
+
+      li {
+        margin-bottom: 4px;
+      }
+
+      /* Education table */
+      .education-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        font-size: 13px;
+      }
+
+      .education-table th,
+      .education-table td {
+        border: 1px solid var(--border);
+        padding: 9px 8px;
+        text-align: left;
+        vertical-align: top;
+        overflow-wrap: anywhere;
+      }
+
+      .education-table th {
+        background: var(--button);
+        color: #ffffff;
+        font-weight: bold;
+      }
+
+      .education-table tbody tr:nth-child(even) {
+        background: var(--table-stripe);
+      }
+      @media (max-width: 600px) {
+        body {
+          padding: 15px 10px;
+        }
+
+        .profile-image {
+          width: 110px;
+          height: 110px;
+        }
+
+        .resume {
+          padding: 25px 20px;
+          box-shadow: none;
+        }
+
+        header h1 {
+          font-size: 23px;
+        }
+
+        .entry-heading {
+          display: block;
+        }
+
+        .date {
+          display: block;
+          margin-top: 3px;
+        }
+
+        .education-table {
+          font-size: 11px;
+        }
+
+        .education-table th,
+        .education-table td {
+          padding: 6px 5px;
+        }
+
+        .contact {
+          gap: 6px 10px;
+        }
+      }
+      @page {
+        size: A4;
+        margin: 12mm;
+      }
+
+      @media print {
+        body {
+          background: #ffffff !important;
+          color: #202938 !important;
+          padding: 0;
+        }
+
+        .toolbar {
+          display: none !important;
+        }
+
+        .resume {
+          width: 100%;
+          max-width: none;
+          margin: 0;
+          padding: 0;
+          box-shadow: none;
+          background: #ffffff !important;
+          color: #202938 !important;
+        }
+
+        header h1,
+        h2,
+        a {
+          color: #174a78 !important;
+        }
+
+        .date,
+        .tech {
+          color: #536174 !important;
+        }
+
+        .education-table {
+          font-size: 10px;
+        }
+
+        .education-table th,
+        .education-table td {
+          padding: 6px;
+        }
+
+        section,
+        .entry,
+        li {
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+
+  <body id="bdy">
+    <div class="toolbar">
+      <button class="print-btn" id="save" type="button">Save as Copy</button>
+      <label id="cls"></label>
+
+      <img
+        src="photo.jpg"
+        class="profile-image"
+        id="img"
+        alt="Profile picture"
+      />
+
+      <div class="button-row">
+        <button class="control-btn" id="hide" type="button">Hide</button>
+
+        <button
+          class="control-btn"
+          id="dark"
+          type="button"
+          aria-pressed="false"
+        >
+          Dark
+        </button>
+      </div>
+    </div>
+
+    <main class="resume" id="resume">
+      <header>
+        <h1>VENKADACHALAM A</h1>
+
+        <div class="contact">
+          <span>Chennai</span>
+          <span>+91-9597152875</span>
+
+          <span>
+            <a href="mailto:venkatpardeep05@gmail.com">
+              venkatpardeep05@gmail.com
+            </a>
+          </span>
+
+          <span>
+            <a
+              href="https://linkedin.com/in/venkadachalam"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
+          </span>
+
+          <span>
+            <a
+              href="https://github.com/venkadachalam2411"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+          </span>
+        </div>
+      </header>
+
+      <section>
+        <h2>Professional Summary</h2>
+        <p>
+          B.E. Computer Science Engineering student with hands-on experience in
+          full-stack development and AWS cloud services. Skilled in Java,
+          Python, JavaScript, React.js, Node.js, MongoDB, SQL, and AWS.
+          Experienced in developing REST APIs, authentication systems,
+          responsive dashboards, CRUD applications, and AWS S3-based file
+          storage. Strong foundation in programming, databases, networking, and
+          cloud computing.
+        </p>
+      </section>
+
+      <section>
+        <h2>Technical Skills</h2>
+
+        <p class="skill">
+          <strong>Programming:</strong>
+          Java, Python, JavaScript, SQL
+        </p>
+
+        <p class="skill">
+          <strong>Web Technologies:</strong>
+          HTML, CSS, React.js, Node.js, Express.js
+        </p>
+
+        <p class="skill">
+          <strong>Databases:</strong>
+          MongoDB, SQL
+        </p>
+
+        <p class="skill">
+          <strong>Cloud:</strong>
+          AWS EC2, S3, RDS, IAM, VPC
+        </p>
+
+        <p class="skill">
+          <strong>Tools:</strong>
+          Git, GitHub, Postman, VS Code
+        </p>
+      </section>
+
+      <section>
+        <h2>Professional Experience</h2>
+
+        <div class="entry">
+          <div class="entry-heading">
+            <span class="entry-title">
+              Software Developer Intern — QADS, Karaikudi
+            </span>
+            <span class="date">June 2026 – July 2026</span>
+          </div>
+
+          <ul>
+            <li>
+              Gained practical experience in software development, application
+              testing, debugging, and technical problem-solving.
+            </li>
+            <li>
+              Worked with development tools and collaborated with team members
+              to understand requirements and implement technical solutions.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Projects</h2>
+
+        <div class="entry">
+          <div class="entry-heading">
+            <span class="entry-title">
+              CivicPulse – Community Issue Reporting System
+            </span>
+          </div>
+
+          <p class="tech">MERN Stack | AWS S3 | JWT</p>
+
+          <ul>
+            <li>
+              Developed a full-stack community issue reporting platform with
+              secure authentication, role-based access control, issue reporting,
+              and status tracking.
+            </li>
+            <li>
+              Implemented responsive dashboards, CRUD operations, REST APIs,
+              MongoDB data management, and image uploads using AWS S3.
+            </li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-heading">
+            <span class="entry-title"> Local Service Management System </span>
+          </div>
+
+          <p class="tech">MERN Stack | MongoDB | Node.js</p>
+
+          <ul>
+            <li>
+              Developed a full-stack platform connecting customers with local
+              service providers for service discovery, booking, and management.
+            </li>
+            <li>
+              Implemented authentication, service listings, booking management,
+              CRUD operations, REST APIs, and responsive dashboards for
+              customers and service providers.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+
+        <table class="education-table">
+          <thead>
+            <tr>
+              <th>Qualification</th>
+              <th>Institution</th>
+              <th>Year</th>
+              <th>Percentage</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Secondary School</td>
+              <td>Shanthi Rani Matriculation Higher Secondary School</td>
+              <td>2020–2021</td>
+              <td>100%</td>
+            </tr>
+
+            <tr>
+              <td>Higher Secondary</td>
+              <td>Shanthi Rani Matriculation Higher Secondary School</td>
+              <td>2021–2023</td>
+              <td>81%</td>
+            </tr>
+
+            <tr>
+              <td>B.E. Computer Science Engineering</td>
+              <td>S.A. Engineering College</td>
+              <td>2023–2027</td>
+              <td>79.3%</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Certifications</h2>
+        <ul>
+          <li>AWS Certified Cloud Practitioner — Amazon Web Services</li>
+          <li>Programming in Java — NPTEL</li>
+          <li>AWS Academy Graduate — AWS Academy Cloud Foundations</li>
+          <li>Frontend Development — Infosys Springboard</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Achievement</h2>
+        <ul>
+          <li>
+            Successfully obtained the AWS Certified Cloud Practitioner
+            certification.
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

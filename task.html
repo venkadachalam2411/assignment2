@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+    .show{
+        color: aquamarine;
+    }
+    .hide{
+        color: brown;
+    }
+   </style>
+</head>
+<body>
+    <button id="Show">Show</button>
+    <label id="Showlabel"></label>
+    <script>
+        var boolean = true ;
+        const button = document.getElementById('Show');
+        const label = document.getElementById('Showlabel');
+        button.addEventListener('click',function()
+    {
+        boolean  = !boolean;
+        label.textContent= `:${boolean?"Lable is visible":"not visible"}`
+        label.className = `${boolean?"show":"hide"}`
+    })
+
+    </script>
+    
+</body>
+</html>
